@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{header}}
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2a5b7e;">
+
+    <form action="/logout" style = 'float: right; margin-right: 5px;' method = 'POST'>
+        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "logout">
+    </form>
+
+</nav>
+
+{% endblock %}
+
+
+{% block head %}
+{{header}}:
+{% endblock %}
+
+{% block content %}
+
+<p>Username:  {{user.username}}</p>
+<p>First Name:  {{user.first_name}}</p>
+<p>Last Name:  {{user.last_name}}</p>
+<p>Email:  {{user.email}}</p>
+
+<form action="/users/{{user.username}}/delete" method = 'POST'>
+    <input class="btn btn-sm btn-outline-secondary" type="submit" value = "Delete User">
+</form>  <br> <br>
+
+<ul>
+{% for FB in feedback %}
+<li>
+    <span >{{FB.content}}</span> <br>
+
+    <form action="/feedback/{{FB.id}}/update" style = 'float: left; margin-right: 5px;' >
+        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "Edit">
+    </form>
+    <form action="/feedback/{{FB.id}}/delete" method = 'POST' >
+        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "Delete">
+    </form>
+    <br>
+</li>
+
+{% endfor %}
+</ul>
+
+<form action="/users/{{user.username}}/feedback/add" style = 'margin-top: 10px;'> 
+    <input class="btn btn-sm btn-outline-secondary" type="submit" value = "Add Feedback">
+</form>
+{% endblock %}

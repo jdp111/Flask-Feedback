@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{header}}
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2a5b7e;">
+ 
+    <form action="/logout" style = 'float: right; margin-right: 5px;' method = 'POST'>
+        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "logout">
+    </form>
+</nav>
+{% endblock %}
+
+
+{% block head %}
+
+{{header}}:
+
+{% endblock %}
+
+
+{%block content%}
+
+<form method = 'POST'>
+{{ form_obj.hidden_tag() }}
+
+{% for field in form_obj: %}
+    {% if field.widget.input_type != 'hidden' %}
+        <p>{{field.label}} {{field}}</p>
+    {% endif %}
+{% endfor %}
+
+<input type="submit" value = "Submit">
+</form>
+
+{% endblock %}

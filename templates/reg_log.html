@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{header}}
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2a5b7e;">
+        
+    <form action = "/login" style = 'float: left; margin-left: 5px;' method = 'POST'>
+        <input type="submit" class="btn btn-sm btn-outline" type="submit" value = "login">
+    </form>
+    <form action = "/register" style = 'float: left; margin-left: 5px;'>
+        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "register">
+    </form>
+{% if "username" in session %}
+    <form action="/logout" style = 'float: right; margin-right: 5px;' method = 'POST'>
+        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "logout">
+    </form>
+{% endif %}
+</nav>
+
+{% endblock %}
+
+
+{% block head %}
+
+{{header}}:
+
+{% endblock %}
+
+
+{%block content%}
+
+<form method = 'POST'>
+{{ form_obj.hidden_tag() }}
+
+{% for field in form_obj: %}
+    {% if field.widget.input_type != 'hidden' %}
+        <p>{{field.label}} {{field}}</p>
+    {% endif %}
+{% endfor %}
+
+<input type="submit" value = "{{header}}">
+</form>
+
+{% endblock %}
