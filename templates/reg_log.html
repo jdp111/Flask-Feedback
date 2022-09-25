@@ -13,11 +13,6 @@
     <form action = "/register" style = 'float: left; margin-left: 5px;'>
         <input class="btn btn-sm btn-outline-secondary" type="submit" value = "register">
     </form>
-{% if "username" in session %}
-    <form action="/logout" style = 'float: right; margin-right: 5px;' method = 'POST'>
-        <input class="btn btn-sm btn-outline-secondary" type="submit" value = "logout">
-    </form>
-{% endif %}
 </nav>
 
 {% endblock %}
